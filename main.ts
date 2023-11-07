@@ -69,7 +69,7 @@ const subir = (): void => {
 }
 
 const esquerda = (): void => {
-  if (y - 1 <= 0) {
+  if (y - 1 >= 0) {
     planta[x][y] = 11;
     y = y - 1;
     planta[x][y] = 33;
@@ -78,7 +78,7 @@ const esquerda = (): void => {
 }
 
 const direita = (): void => {
-  if (y + 1 >= planta[0].length) {
+  if (y + 1 > planta[0].length) {
     planta[x][y] = 11;
     y = y + 1;
     planta[x][y] = 33;
