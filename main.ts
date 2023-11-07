@@ -22,6 +22,26 @@ const planta: number[][] = [
   [22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22]
 ]
 
+const planta1: number[][] = [
+  [22, 22, 22, 22, 22, 33, 11, 22, 22, 22, 22, 22, 22, 11, 11, 22, 22, 22, 22, 22],
+  [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+  [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+  [22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 88, 11, 22],
+  [22, 11, 11, 22, 22, 11, 11, 22, 22, 88, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22],
+  [22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22],
+  [22, 11, 88, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22],
+  [22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22],
+  [22, 11, 11, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 11, 11, 22],
+  [22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22],
+  [22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22],
+  [22, 11, 11, 22, 22, 88, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22],
+  [22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 88, 11, 22],
+  [22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22],
+  [22, 11, 11, 88, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+  [22, 11, 11, 11, 11, 11, 11, 88, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+  [22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+  [22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22]
+] 
 const colorir = (text: number): string => {
   if (text == 22) {
     return color.red.bgRed("  ");
@@ -38,9 +58,9 @@ var x: number = 0;
 var y: number = 5;
 var passos: number = 0;
 
-const mostrarPlanta = (): void => {
+const mostrarPlanta = (mapa:number[][]): void => {
   console.clear();
-  for (let i of planta) {
+  for (let i of mapa) {
     let linha: any[] = [];
     for (let e of i) {
       linha.push(colorir(e));
@@ -51,10 +71,10 @@ const mostrarPlanta = (): void => {
 }
 
 const descer = (): void => {
-  if (x + 1 <= planta.length && planta[x + 1][y] !== 22) {
-    planta[x][y] = 11;
+  if (x + 1 <= planta1.length && planta1[x + 1][y] !== 22) {
+    planta1[x][y] = 11;
     x = x + 1;
-    planta[x][y] = 33;
+    planta1[x][y] = 33;
     passos++;
   }
 }
@@ -78,16 +98,16 @@ const esquerda = (): void => {
 }
 
 const direita = (): void => {
-  if (y + 1 > planta[0].length && planta[y + 1][x] !== 22) {
-    planta[x][y] = 11;
+  if (y + 1 > planta1[0].length && planta1[y + 1][x] !== 22) {
+    planta1[x][y] = 11;
     y = y + 1;
-    planta[x][y] = 33;
+    planta1[x][y] = 33;
     passos++;
   }
 }
 
 const verificaProduto = ():boolean => {
-  for (var linha of planta) {
+  for (var linha of planta1) {
     for (var item of linha) {
       if (item == 88) {
         return false;
@@ -97,8 +117,9 @@ const verificaProduto = ():boolean => {
   return true;
 }
 
+
 while (true) {
-  mostrarPlanta();
+  mostrarPlanta(planta1);
   let escolha: string = input('Digite uma direção(w, a, s, d) ou q para sair: ');
   if (escolha.toUpperCase() == 'Q' || verificaProduto()) {
     break;
