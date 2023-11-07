@@ -86,12 +86,21 @@ const direita = (): void => {
   }
 }
 
-
+const verificaProduto = ():boolean => {
+  for (var linha of planta) {
+    for (var item of linha) {
+      if (item == 88) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
 
 while (true) {
   mostrarPlanta();
   let escolha: string = input('Digite uma direção(w, a, s, d) ou q para sair: ');
-  if (escolha.toUpperCase() == 'Q') {
+  if (escolha.toUpperCase() == 'Q' || verificaProduto()) {
     break;
   } else if (escolha.toUpperCase() == "W") {
     subir();
