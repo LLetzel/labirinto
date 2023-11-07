@@ -10,6 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cli-color": "^2.0.3",
+    "cll": "^0.0.1",
+    "color": "^4.2.3",
+    "prompt-sync": "^4.2.0",
     "ts-node": "^10.9.1"
   }
 }
