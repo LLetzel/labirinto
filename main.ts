@@ -51,7 +51,7 @@ const mostrarPlanta = (): void => {
 }
 
 const descer = (): void => {
-  if (x + 1 <= planta.length) {
+  if (x + 1 <= planta.length && planta[x + 1][y] !== 22) {
     planta[x][y] = 11;
     x = x + 1;
     planta[x][y] = 33;
@@ -60,7 +60,7 @@ const descer = (): void => {
 }
 
 const subir = (): void => {
-  if (x - 1 >= 0) {
+  if (x - 1 >= 0 && planta[x - 1][y] !== 22) {
     planta[x][y] = 11;
     x = x - 1;
     planta[x][y] = 33;
@@ -69,7 +69,7 @@ const subir = (): void => {
 }
 
 const esquerda = (): void => {
-  if (y - 1 >= 0) {
+  if (y - 1 >= 0 && planta[y - 1][x] !== 22) {
     planta[x][y] = 11;
     y = y - 1;
     planta[x][y] = 33;
@@ -78,7 +78,7 @@ const esquerda = (): void => {
 }
 
 const direita = (): void => {
-  if (y + 1 > planta[0].length) {
+  if (y + 1 > planta[0].length && planta[y + 1][x] !== 22) {
     planta[x][y] = 11;
     y = y + 1;
     planta[x][y] = 33;
