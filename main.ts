@@ -10,7 +10,7 @@ const planta: number[][] = [
   [22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 88, 11, 22],
   [22, 11, 11, 22, 22, 88, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22],
   [22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22],
-  [22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22],
+  [22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 11],
   [22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22],
   [22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22],
   [22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22],
@@ -31,7 +31,7 @@ const planta1: number[][] = [
   [22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22],
   [22, 11, 88, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22],
   [22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22],
-  [22, 11, 11, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 11, 11, 22],
+  [22, 11, 11, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 11, 11, 11],
   [22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22],
   [22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22],
   [22, 11, 11, 22, 22, 88, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 11, 11, 22],
@@ -41,7 +41,7 @@ const planta1: number[][] = [
   [22, 11, 11, 11, 11, 11, 11, 88, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
   [22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
   [22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22]
-] 
+]
 const colorir = (text: number): string => {
   if (text == 22) {
     return color.red.bgRed("  ");
@@ -58,7 +58,7 @@ var x: number = 0;
 var y: number = 5;
 var passos: number = 0;
 
-const mostrarPlanta = (mapa:number[][]): void => {
+const mostrarPlanta = (mapa: number[][]): void => {
   console.clear();
   for (let i of mapa) {
     let linha: any[] = [];
@@ -70,16 +70,16 @@ const mostrarPlanta = (mapa:number[][]): void => {
   console.log("Passos: ", passos);
 }
 
-const descer = (): void => {
-  if (x + 1 <= planta1.length && planta1[x + 1][y] !== 22) {
-    planta1[x][y] = 11;
+const descer = (planta: number[][]): void => {
+  if (x + 1 <= planta.length && planta[x + 1][y] !== 22) {
+    planta[x][y] = 11;
     x = x + 1;
-    planta1[x][y] = 33;
+    planta[x][y] = 33;
     passos++;
   }
 }
 
-const subir = (): void => {
+const subir = (planta: number[][]): void => {
   if (x - 1 >= 0 && planta[x - 1][y] !== 22) {
     planta[x][y] = 11;
     x = x - 1;
@@ -88,7 +88,7 @@ const subir = (): void => {
   }
 }
 
-const esquerda = (): void => {
+const esquerda = (planta: number[][]): void => {
   if (y - 1 >= 0 && planta[y - 1][x] !== 22) {
     planta[x][y] = 11;
     y = y - 1;
@@ -97,16 +97,16 @@ const esquerda = (): void => {
   }
 }
 
-const direita = (): void => {
-  if (y + 1 > planta1[0].length && planta1[y + 1][x] !== 22) {
-    planta1[x][y] = 11;
+const direita = (planta: number[][]): void => {
+  if (y + 1 < planta[0].length && planta[x][y + 1] !== 22) {
+    planta[x][y] = 11;
     y = y + 1;
-    planta1[x][y] = 33;
+    planta[x][y] = 33;
     passos++;
   }
 }
 
-const verificaProduto = ():boolean => {
+const verificaProduto = (): boolean => {
   for (var linha of planta1) {
     for (var item of linha) {
       if (item == 88) {
@@ -118,20 +118,34 @@ const verificaProduto = ():boolean => {
 }
 
 
-while (true) {
-  mostrarPlanta(planta1);
+const start = (plantaAtual: number[][]) => {
+
+  mostrarPlanta(plantaAtual);
   let escolha: string = input('Digite uma direção(w, a, s, d) ou q para sair: ');
   if (escolha.toUpperCase() == 'Q' || verificaProduto()) {
-    break;
+    return
   } else if (escolha.toUpperCase() == "W") {
-    subir();
+    subir(plantaAtual);
   } else if (escolha.toUpperCase() == "S") {
-    descer();
+    descer(plantaAtual);
   } else if (escolha.toUpperCase() == "A") {
-    esquerda();
+    esquerda(plantaAtual);
   } else if (escolha.toUpperCase() == "D") {
-    direita();
+    direita(plantaAtual);
   }
+  if (x == 8 && y == 19) {
+    if (plantaAtual == planta1) {
+      plantaAtual = planta;
+    } else {
+      planta[8][19] = 11;
+      planta[0][5] = 33;
+      plantaAtual = planta1;
+    }
+    x = 0;
+    y = 5;
 
+  }
+  start(plantaAtual);
 }
+start(planta);
 
